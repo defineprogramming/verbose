@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbose - Profile</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico"/>
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="Verbose Logo">
+        <h1>Verbose</h1>
+    </header>
+    <main>
+        <section id="profile-section">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.profile.bio }}</p>
+            <img src="{{ user.profile.avatar.url }}" alt="Profile Picture">
+            <form id="profile-form" method="post">
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                <button type="submit">Update Profile</button>
+            </form>
+        </section>
+        <section id="tweets-section">
+            <h2>Your Verbose Posts</h2>
+            <ul>
+                {% for tweet in tweets %}
+                    <li>
+                        <p>{{ tweet.content }}</p>
+                        <p>{{ tweet.created_at }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>© 2022 Verbose. All rights reserved.</p>
+    </footer>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

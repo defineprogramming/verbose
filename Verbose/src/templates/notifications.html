@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbose - Notifications</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="icon" href="/static/images/favicon.ico">
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="Verbose Logo">
+        <h1>Verbose</h1>
+    </header>
+    <nav>
+        <a href="/profiles/">Profiles</a>
+        <a href="/tweets/">Tweets</a>
+        <a href="/notifications/">Notifications</a>
+        <a href="/authentication/logout/">Logout</a>
+    </nav>
+    <main>
+        <h2>Your Notifications</h2>
+        <div id="notification-list">
+            {% for notification in notifications %}
+            <div class="notification">
+                <p>{{ notification.message }}</p>
+                <p><small>Received: {{ notification.timestamp }}</small></p>
+            </div>
+            {% empty %}
+            <p>No notifications yet.</p>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2022 Verbose. All rights reserved.</p>
+    </footer>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

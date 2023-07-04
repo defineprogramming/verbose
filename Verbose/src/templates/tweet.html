@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbose - Speak Your Mind</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Verbose Logo">
+        <h1>Verbose - Speak Your Mind</h1>
+    </header>
+
+    <main>
+        <form id="tweet-form" method="POST">
+            {% csrf_token %}
+            {{ tweet_form.as_p }}
+            <button type="submit">Post</button>
+        </form>
+
+        <section id="tweets">
+            {% for tweet in tweets %}
+                <article>
+                    <h2>{{ tweet.user.username }}</h2>
+                    <p>{{ tweet.content }}</p>
+                    <time>{{ tweet.created_at }}</time>
+                </article>
+            {% empty %}
+                <p>No tweets yet. Be the first to speak your mind!</p>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2022 Verbose. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
